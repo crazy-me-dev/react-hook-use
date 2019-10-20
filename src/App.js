@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 
 export default function App() {
   const [techs, setTechs] = useState([]);
-  const [newTech, setNewTech] = useState('');
+  const [newTech, setNewTech] = useState();
 
   function handleAddTech() {
     setTechs([...techs, newTech]);
@@ -26,16 +26,16 @@ export default function App() {
   return (
     <>
       {techSize > 0 && (
-        <>
-          <ul>
+        <ul>
+          <>
             {techs.map(tec => (
               <li key={tec}> {tec} </li>
             ))}
-          </ul>
-          <br />
-          <strong>{techSize} tecnologias adicionadas.</strong>
-          <br />
-        </>
+            <br />
+            <strong> {techSize} tecnologias adicionadas! </strong>
+            <br />
+          </>
+        </ul>
       )}
       <input
         type="text"
