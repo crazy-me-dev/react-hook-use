@@ -4,11 +4,6 @@ export default function App() {
   const [techs, setTechs] = useState([]);
   const [newTech, setNewTech] = useState();
 
-  const handleAddTech = useCallback(() => {
-    setTechs([...techs, newTech]);
-    setNewTech('');
-  }, [newTech, techs]);
-
   useEffect(() => {
     const storageTech = localStorage.getItem('techs');
 
@@ -23,19 +18,24 @@ export default function App() {
 
   const techSize = useMemo(() => techs.length, [techs]);
 
+  const handleAddTech = useCallback(() => {
+    setTechs([...techs, newTech]);
+    setNewTech('');
+  }, [newTech, techs]);
+
   return (
     <>
       {techSize > 0 && (
-        <ul>
-          <>
+        <>
+          <strong>
+            {techSize} tecnologia{techSize > 1 && 's'} adcionadas:
+          </strong>
+          <ul>
             {techs.map(tec => (
               <li key={tec}> {tec} </li>
             ))}
-            <br />
-            <strong> {techSize} tecnologias adicionadas! </strong>
-            <br />
-          </>
-        </ul>
+          </ul>
+        </>
       )}
       <input
         type="text"
