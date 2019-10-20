@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 export default function App() {
   const [techs, setTechs] = useState([]);
@@ -21,14 +21,21 @@ export default function App() {
     localStorage.setItem('techs', JSON.stringify(techs));
   }, [techs]);
 
+  const techSize = useMemo(() => techs.length, [techs]);
+
   return (
     <>
-      {techs.length > 0 && (
-        <ul>
-          {techs.map(tec => (
-            <li key={tec}> {tec} </li>
-          ))}
-        </ul>
+      {techSize > 0 && (
+        <>
+          <ul>
+            {techs.map(tec => (
+              <li key={tec}> {tec} </li>
+            ))}
+          </ul>
+          <br />
+          <strong>{techSize} tecnologias adicionadas.</strong>
+          <br />
+        </>
       )}
       <input
         type="text"
