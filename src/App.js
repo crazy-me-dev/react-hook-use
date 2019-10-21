@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 export default function App() {
   const [techs, setTechs] = useState([]);
-  const [newTech, setNewTech] = useState();
+  const [newTech, setNewTech] = useState('');
 
   useEffect(() => {
     const storageTech = localStorage.getItem('techs');
